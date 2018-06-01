@@ -59,10 +59,12 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#home" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
-                    <li><a href="#desc" class="smoothScroll">{{ trans('adminlte_lang::message.description') }}</a></li>
-                    <li><a href="#showcase" class="smoothScroll">{{ trans('adminlte_lang::message.showcase') }}</a></li>
-                    <li><a href="#contact" class="smoothScroll">{{ trans('adminlte_lang::message.contact') }}</a></li>
+                    <li class="active"><a href="#home" class="smoothScroll">{{ trans('home') }}</a></li>
+                    <li><a href="#desc" class="smoothScroll">{{ trans('住宿總覽') }}</a></li>
+					<li><a href="#desc" class="smoothScroll">{{ trans('花蓮景點') }}</a></li>
+                    <li><a href="#showcase" class="smoothScroll">{{ trans('相關連結') }}</a></li>
+					<li><a href="#contact" class="smoothScroll">{{ trans('推薦住宿') }}</a></li>
+                    <li><a href="#contee" class="smoothScroll">{{ trans('評論區') }}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
@@ -82,6 +84,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             <div class="container">
                 <div class="row centered">
                     <div class="col-lg-12">
+
                         <h1>搜尋 <b>住宿地點</b></h1>
                     </div>
 
@@ -94,10 +97,9 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                                         <label  style="font-size:24px;color:black;font-family:Microsoft JhengHei">住宿類別</label> 
                                         <select style="width:25%;color:black;" name='type'>
                                         <option value="">全部</option>
-                                        <option value="旅館">旅館</option>
                                         <option value="民宿">民宿</option>
-                                        <option value="飯店">飯店</option>
-                                        <option value="酒店">酒店</option>
+                                        <option value="旅館">旅館</option>
+
                                         </select> 
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <label  style="font-size:24px;color:black;font-family:Microsoft JhengHei">鄉鎮市</label> 
