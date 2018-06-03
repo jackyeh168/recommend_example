@@ -33,4 +33,12 @@ Route::get('/landscape', 'WebController@getLandscape');
 Route::get('/relation', 'WebController@getRelation');
 Route::get('/recommend', 'WebController@getRecommend');
 Route::get('/comment', 'WebController@getComment');
+Route::get('/logout', 'WebController@logout');
 
+Route::group(['prefix' => 'data'], function () {
+    Route::get('allHotels', 'ContentController@getAllHotels');
+    Route::get('hotel', 'ContentController@getHotel');
+    Route::get('getEvaluation', 'ContentController@getEvaluation');
+    Route::get('getHotels', 'ContentController@getHotels');
+    Route::post('postEvaluation', 'ContentController@postEvaluation');
+});

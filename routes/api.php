@@ -24,5 +24,3 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function () {
     #adminlte_api_routes
 });
 
-Route::get('allHotels', 'ContentController@getAllHotels');
-Route::get('hotel', 'ContentController@getHotel');

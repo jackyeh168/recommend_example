@@ -33,7 +33,7 @@
 <script>
 
 var table = $('#allHotelTable').DataTable({
-	"ajax": '/api/allHotels',
+	"ajax": '/data/allHotels',
 	"columns": [
 		{
 			data:  function(content){

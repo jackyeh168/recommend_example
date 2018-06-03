@@ -80,7 +80,7 @@
     }
 
     $.ajax({
-        url: "/api/hotel?hotel_id=" + getParameterByName('hotel_id'),
+        url: "/data/hotel?hotel_id=" + getParameterByName('hotel_id'),
         context: document.body
     }).done(function (data) {
         let obj = JSON.parse(data);
