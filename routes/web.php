@@ -27,7 +27,10 @@ Route::group(['middleware' => 'auth'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/hotel_list', 'WebController@getHotelList');
+Route::get('/hotel', 'WebController@getHotel');
+Route::get('/landscape', 'WebController@getLandscape');
+Route::get('/relation', 'WebController@getRelation');
+Route::get('/recommend', 'WebController@getRecommend');
+Route::get('/comment', 'WebController@getComment');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
