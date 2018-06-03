@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: mysql
--- 產生時間： 2018 年 06 月 03 日 00:33
+-- 產生時間： 2018 年 06 月 03 日 03:41
 -- 伺服器版本: 8.0.2-dmr
 -- PHP 版本： 7.0.21
 
@@ -125,6 +125,34 @@ INSERT INTO `activity` (`id`, `date`, `activity`, `location`) VALUES
 (83, '12月', '聖誕節感恩活動', '卓溪國小'),
 (84, '12月31日', '2017-2018太平洋觀光節', '花蓮市六期重劃區'),
 (85, '12月31日', '跨年晚會', '鳳林鎮鎮民廣場');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `evaluation`
+--
+
+CREATE TABLE `evaluation` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `hotel_id` int(11) NOT NULL,
+  `evaluation` tinyint(4) NOT NULL,
+  `text` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表的匯出資料 `evaluation`
+--
+
+INSERT INTO `evaluation` (`id`, `user_id`, `hotel_id`, `evaluation`, `text`, `created_at`) VALUES
+(1, NULL, 24, 4, 'asdf', '2018-06-03 02:57:34'),
+(2, NULL, 24, 4, 'asdf', '2018-06-03 02:57:50'),
+(3, NULL, 1, 2, 'asd', '2018-06-03 02:58:01'),
+(4, NULL, 2, 4, 'asdf', '2018-06-03 02:58:56'),
+(5, NULL, 1, 0, 'dfg', '2018-06-03 02:59:25'),
+(6, NULL, 1, 4, 'sdf', '2018-06-03 03:01:53'),
+(7, 2, 64, 4, 'asdf', '2018-06-03 03:22:05');
 
 -- --------------------------------------------------------
 
@@ -2046,7 +2074,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin@admin.com', '$2y$10$TU3GKfv7iyF/xi7OYC9bAeWnmCvWpDZLgGgKFJ94J9Tg8YF/0VOrG', NULL, '2018-05-27 07:56:11', '2018-05-27 07:56:11'),
-(2, 'example', 'example@example.com', '$2y$10$ufjPf.NwhqBfIdgl.Coms.MU0wEaDvdosLgH2FXg2NnRfWMDZ/p8G', NULL, '2018-06-01 11:59:14', '2018-06-01 11:59:14');
+(2, 'example', 'example@example.com', '$2y$10$ufjPf.NwhqBfIdgl.Coms.MU0wEaDvdosLgH2FXg2NnRfWMDZ/p8G', '8JXbD3TSsf2M1z6fWnoNgmMQdMz4Sn8cgdxvAM2VCBz1WIBRlCAsm5HTHHMT', '2018-06-01 11:59:14', '2018-06-01 11:59:14');
 
 --
 -- 已匯出資料表的索引
@@ -2056,6 +2084,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 -- 資料表索引 `activity`
 --
 ALTER TABLE `activity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `evaluation`
+--
+ALTER TABLE `evaluation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2086,6 +2120,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `activity`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+--
+-- 使用資料表 AUTO_INCREMENT `evaluation`
+--
+ALTER TABLE `evaluation`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用資料表 AUTO_INCREMENT `hotel`
