@@ -23,7 +23,7 @@ class ContentController extends Controller
         $id = request()->input('hotel_id');
         $query = \DB::table('hotel')
             ->where('hotel_id', $id)
-            ->select('name', 'town', 'address', 'phone', 'type', 'price', 'star' )
+            ->select('name', 'town', 'address', 'phone', 'type', 'min_price', 'max_price', 'star' )
             ->get();
 
         return json_encode($query[0]);
@@ -44,8 +44,6 @@ class ContentController extends Controller
     
     public function postEvaluation(Request $request){
         try {
-
-            
             $name = (Auth::user() !== null ) ?Auth::user()->id:null;
             $hotel_id = request()->input('hotel_id');
             $rating = request()->input('rating');

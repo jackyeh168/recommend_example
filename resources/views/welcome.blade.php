@@ -6,7 +6,6 @@
             <div class="container">
                 <div class="row centered">
                     <div class="col-lg-12">
-
                         <h1>搜尋 <b>住宿地點</b></h1>
                     </div>
 

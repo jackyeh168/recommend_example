@@ -42,3 +42,6 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('getHotels', 'ContentController@getHotels');
     Route::post('postEvaluation', 'ContentController@postEvaluation');
 });
+
+Route::get('test', 'DisController@computeDis');
+Route::get('t2', 'DisController@computeTopk');

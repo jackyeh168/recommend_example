@@ -86,10 +86,13 @@
         let obj = JSON.parse(data);
 
         Object.keys(obj).map(function (k, i) {
+            if (k == 'min_price' || k == 'max_price') {
+                return;
+            }
             $('#'+ k).html(obj[k]);
             console.log($('#'+ k).val());
             // console.log(obj[k]);
         });
-
+        $('#price').html('NT $' + obj['min_price'] + " - " + obj['max_price']);
     });
 </script> @endsection
