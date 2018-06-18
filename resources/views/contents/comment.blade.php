@@ -9,7 +9,7 @@
             <div class="row centered">
 
                 <div class="box-header with-border">
-                    <h3 class="box-title">評價區</h3>
+                    <h2 class="box-title">評價區</h2>
                 </div>
 
                 <div class="box-body">

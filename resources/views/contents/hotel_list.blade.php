@@ -12,6 +12,7 @@
 							<table id="allHotelTable" class="table-hover table table-bordered dataTable">
 								<thead>
 									<tr>
+						
 										<th style="width: 10% !important;">名稱</th>
 										<th style="width: 30% !important;">類別</th>
 										<th style="width: 30% !important;">地址</th>

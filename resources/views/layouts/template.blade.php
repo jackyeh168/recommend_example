@@ -11,9 +11,20 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #f6e6b4 0%,#ed9017 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=0 ); /* IE6-9 */
+		
+		img {
+	     height: auto;
+	     max-width: 100%;
+	 }
 }
+
+
 </style>
 <head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Adminlte-laravel - {{ trans('adminlte_lang::message.landingdescription') }} ">
@@ -33,13 +44,15 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta name="twitter:site" content="@acachawiki" />
     <meta name="twitter:creator" content="@acacha1" />
 
-    <title>{{ trans('adminlte_lang::message.landingdescriptionpratt') }}</title>
+    <!-- <title>{{ trans('adminlte_lang::message.landingdescriptionpratt') }}</title> -->
+	 <title>{{ trans('住宿網站') }}</title>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('/css/all-landing.css') }}" rel="stylesheet">
 
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -49,7 +62,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>
-     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
 
 
 </head>
@@ -73,7 +86,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     <li class="active"><a href="/home" class="smoothScroll">Home</a></li>
                     <li><a href="/hotel_list" class="smoothScroll">住宿總覽</a></li>
 					<li><a href="/landscape" class="smoothScroll">花蓮景點</a></li>
-                    <li><a href="/relation" class="smoothScroll">相關連結</a></li>
+					<li><a href="/relation" class="smoothScroll">相關連結</a></li>
 					<li><a href="/recommend" class="smoothScroll">推薦住宿</a></li>
                     <li><a href="/comment" class="smoothScroll">評論區</a></li>
                 </ul>
