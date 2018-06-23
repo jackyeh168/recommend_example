@@ -12,6 +12,11 @@ class WebController extends Controller
     {
         return view('contents.hotel_list');
     }
+	
+	public function getInquire()
+    {
+        return view('contents.Inquire');
+    }
 
     public function getLandscape()
     {

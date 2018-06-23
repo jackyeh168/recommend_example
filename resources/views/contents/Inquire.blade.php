@@ -1,24 +1,17 @@
 @extends('layouts.template')
 
-@section('content')
-    <div id="wrapper2">
-		<div id="header" class="container">
-			<div id="logo">
-				<h1><a href="#">Mushrooms </a></h1>
-				<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
-			</div>
-			<div id="menu">
-				<ul>
-					<li class="current_page_item"><a href="#">Homepage</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Photos</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-		<!-- end #header -->
-		<div id="page">
+@section('contents')
+
+<section id="home" name="home">
+    <div id="headerwrap" class="bg">
+        <div class="container">
+            <div class="row centered">
+
+                <div class="col-lg-12">
+                    <div class="box-solid content content-wrapper" style="padding-top:100px;text-align:center">
+					
+					
+					<div id="page">
 			<div id="content">
 				<div class="post">
 					<h2 class="title"><a href="#">Welcome to Mushrooms </a></h2>
@@ -106,9 +99,32 @@
 			<!-- end #sidebar -->
 			<div style="clear: both;">&nbsp;</div>
 		</div>
-		<!-- end #page -->
-		<div id="footer">
-			<p>© Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-		</div>
-	</div>
-@show
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+                    </div>
+                </div>
+
+            </div>
+        </div> <!--/ .container -->
+    </div><!--/ #headerwrap -->
+	
+	
+	
+</section>
+
+@endsection

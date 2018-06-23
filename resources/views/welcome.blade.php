@@ -71,7 +71,8 @@
                                         </select>
 
 			                        </div>
-									<button type="button" class="btn btn-primary btn-lg btn-block">查詢</button>
+									
+									<a href="Inquire"><button type="button" class="btn btn-primary btn-lg btn-block">查詢</button></a>
 			                    </form>
 		                    </div>
                      </div>

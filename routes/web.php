@@ -34,6 +34,7 @@ Route::get('/relation', 'WebController@getRelation');
 Route::get('/recommend', 'WebController@getRecommend');
 Route::get('/comment', 'WebController@getComment');
 Route::get('/logout', 'WebController@logout');
+Route::get('/Inquire', 'WebController@getInquire');
 
 Route::group(['prefix' => 'data'], function () {
     Route::get('allHotels', 'ContentController@getAllHotels');
