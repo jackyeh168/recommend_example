@@ -58,10 +58,12 @@
             <div class="row centered" style="padding-top: 100px;">
                 <h4>附近旅遊景點</h4>
             </div>
+            <div class="row" style="height: 100px;" id="attraction"></div>
 
-            <div class="row centered" style="padding-top: 100px;padding-bottom: 100px;">
+            <div class="row centered" style="padding-top: 100px;">
                 <h4>周邊近期活動</h4>
             </div>
+            <div class="row" style="height: 100px;" id="activity"></div>
         </div>
         <!--/ .container -->
     </div>
@@ -90,9 +92,30 @@
                 return;
             }
             $('#'+ k).html(obj[k]);
-            console.log($('#'+ k).val());
-            // console.log(obj[k]);
         });
         $('#price').html('NT $' + obj['min_price'] + " - " + obj['max_price']);
+        
+        let attraction = '';
+        let activity = '';
+
+        obj.attraction.forEach(el => {
+            attraction += `<div class="col-xs-4">
+            <h4>標題: ${el.title}</h4>
+            <h4>地址: ${el.address}</h4>
+            </div>`;
+        });
+
+
+        obj.activity.forEach(el => {
+            activity += `<div class="col-xs-4">
+            <h4>標題: ${el.title}</h4>
+            <h4>地址: ${el.address}</h4>
+            <h4>日期: ${el.from_date} - ${el.to_date}</h4>
+            </div>`;
+        });
+
+        $('#attraction').html(attraction);
+        $('#activity').html(activity);
+
     });
 </script> @endsection
