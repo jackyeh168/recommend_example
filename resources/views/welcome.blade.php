@@ -102,42 +102,43 @@
                     url: "/data/search",
                     data: postData
                 }).done(function (data) {
-                    let obj = JSON.parse(data);
-                    console.log(obj);
+                    let arr = JSON.parse(data);
+
                     let htmlStr = '';
-                    if (obj === null) {
+                    if (arr.length === 0) {
                         htmlStr = '<h1>無</h1>';    
                     }
                     else {
-                        htmlStr = `
-                            <h2>名稱: ${obj.name}</h2><br>
-                            <h2>地址: ${obj.address}</h2><br>
-                            <h2>價格: ${obj.min_price} - ${obj.max_price}</h2><br>
-                            <div class="row centered" style="padding-top: 100px;">
-                                <h4>附近旅遊景點</h4></div>
-                        `;
-
-                        obj.attraction.forEach(el => {
+                        arr.forEach(el => {
                             htmlStr += `
-                            <div class="col-xs-4">
-                            <h4>標題: ${el.title}</h4>
-                            <h4>地址: ${el.address}</h4>
-                            </div>`;
+                                <div class="row">
+                                <h2>名稱: ${el.name}</h2><br>
+                                <h2>地址: ${el.address}</h2><br>
+                                <h2>價格: ${el.min_price} - ${el.max_price}</h2><br>
+                                <div class="row centered" style="padding-top: 100px;">
+                                    <h4>附近旅遊景點</h4></div>
+                            `;
+
+                            el.attraction.forEach(ele => {
+                                htmlStr += `
+                                <div class="col-xs-4">
+                                <h4>標題: ${ele.title}</h4>
+                                </div>`;
+                            });
+
+                            htmlStr+=`
+                                <div class="row centered" style="padding-top: 100px;">
+                                    <h4>周邊近期活動</h4>
+                                </div>`
+
+                            el.activity.forEach(ele => {
+                                htmlStr += `
+                                <div class="col-xs-4">
+                                <h4>標題: ${ele.title}</h4>
+                                </div>`;
+                            });
                         });
 
-                        htmlStr+=`
-                            <div class="row centered" style="padding-top: 100px;">
-                                <h4>周邊近期活動</h4>
-                            </div>`
-
-                        obj.activity.forEach(el => {
-                            htmlStr += `
-                            <div class="col-xs-4">
-                            <h4>標題: ${el.title}</h4>
-                            <h4>地址: ${el.address}</h4>
-                            <h4>日期: ${el.from_date} - ${el.to_date}</h4>
-                            </div>`;
-                        });
                     }
                     $('#result').html(htmlStr);
 

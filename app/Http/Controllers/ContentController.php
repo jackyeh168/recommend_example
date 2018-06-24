@@ -111,9 +111,12 @@ class ContentController extends Controller
             $query = $query->where('type', 'like', '%' . $room_type . '%');
         }
 
-        $query = $query->orderBy('topk', 'desc')->first();
+        $query = $query->orderBy('topk', 'desc')->limit(20)->get();
+        for ($i=0; $i < count($query); $i++) { 
+            $query[$i] = $this->getAroundActivity($query[$i]);
+        }
 
-        return json_encode($this->getAroundActivity($query));
+        return json_encode($query);
     }
 
     public function recommend(){
