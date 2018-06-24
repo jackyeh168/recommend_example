@@ -1,4 +1,4 @@
-@extends('layouts.template')
+﻿@extends('layouts.template')
 
 @section('contents')
 
@@ -11,7 +11,6 @@
 				</div>
                 <div class="col-xs-6" id="hotel">
 				</div>
-
             </div>
         </div> <!--/ .container -->
     </div><!--/ #headerwrap -->
