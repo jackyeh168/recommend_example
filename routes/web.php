@@ -42,7 +42,46 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('getEvaluation', 'ContentController@getEvaluation');
     Route::get('getHotels', 'ContentController@getHotels');
     Route::post('postEvaluation', 'ContentController@postEvaluation');
+    Route::post('search', 'ContentController@search');
+    Route::post('recommend', 'ContentController@recommend');
 });
 
 Route::get('test', 'DisController@computeDis');
 Route::get('t2', 'DisController@computeTopk');
+
+Route::get('test2', function () {
+    $arr = [];
+    $q = DB::table('tmp')->get()->toArray();
+    for ($i=0; $i < count($q); $i++) { 
+        unset($q[$i]->id);
+        array_push($arr, json_encode($q[$i]));
+    }
+    $arr = array_unique($arr);
+    // return json_encode($arr);
+
+    foreach ($arr as $k => $v) {
+        DB::table('activity')->insert(
+            json_decode($v, true)
+        );
+    }
+
+});
+
+Route::get('test3', function () {
+    $arr = [];
+    $q = DB::table('hotel')->get()->toArray();
+    for ($i=0; $i < count($q); $i++) { 
+        $p = ($q[$i]->min_price + $q[$i]->max_price)/2/2000;
+
+        $p = floor($p);
+        if ($p > 4){
+            $p = 4;
+        }
+
+        DB::table('hotel')
+        ->where('hotel_id', $q[$i]->hotel_id)
+        ->update(
+            ['price_interval' => $p]
+        );
+    }
+});

@@ -10,7 +10,7 @@
                     </div> --> 
 					
 
-					<div class="col-sm-5 form-box">
+					<div class="col-xs-6 form-box">
                         	<div class="form-top">
                         		<div class="form-top-left">
                         			<h2>查詢理想住宿</h2>
@@ -24,14 +24,14 @@
                             <div class="form-bottom">
 			                    <form role="form" action="" method="post" class="registration-form">
 			                    	<div class="form-group">
-			                          	<select class="selectpicker" style="width:100%;height:50px;color:black;" name='type'>
+			                          	<select class="selectpicker" style="width:100%;height:50px;color:black;" name='type' id="type">
                                             <option value="">住宿類別</option>
                                             <option value="民宿">民宿</option>
                                             <option value="旅館">旅館</option>
                                         </select>
                                     </div>
 			                        <div class="form-group">
-										<select style="width:100%;height:50px;color:black;" name="county">
+										<select style="width:100%;height:50px;color:black;" name="county"  id="county">
                                             <option value="">鄉鎮市</option>
                                             <option value="花蓮市">花蓮市</option>
                                             <option value="新城鄉">新城鄉</option>
@@ -50,10 +50,10 @@
 
 			                        </div>
 			                        <div class="form-group">
-			                        	<input name="daterange" placeholder="住宿時間" class="form-daterange form-control" id="form-daterange" type="text" style="height:50px;">
+			                        	<input name="daterange" placeholder="住宿時間" class="form-daterange form-control" id="daterange" type="text" style="height:50px;">
 			                        </div>
 			                        <div class="form-group">
-                                        <select  style="width:100%;height:50px;color:black;" name="price">
+                                        <select  style="width:100%;height:50px;color:black;" name="price" id="price">
                                             <option value="">價格</option>
                                             <option value="0">0 ~ 2000</option>
                                             <option value="2001">2001 ~ 4000</option>
@@ -62,7 +62,7 @@
                                         </select>
 			                        </div>
 									<div class="form-group">
-			                        	<select  style="width:100%;height:50px;color:black;" name="room_type">
+			                        	<select  style="width:100%;height:50px;color:black;" name="room_type" id="room_type">
                                             <option value="">房型</option>
                                             <option value="單人房">單人房</option>
                                             <option value="雙人房">雙人房</option>
@@ -72,15 +72,77 @@
 
 			                        </div>
 									
-									<a href="Inquire"><button type="button" class="btn btn-primary btn-lg btn-block">查詢</button></a>
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="query()">查詢</button>
 			                    </form>
 		                    </div>
                      </div>
-                    <div class="col-lg-12">
+                    <div class="col-xs-6" >
+                        <div class="row centered" id="result"></div>
+
+                    </div>
+                    <div class="col-xs-12">
                         <img src="/img/skyline.png" alt="" srcset="">
                     </div>
                 </div>
             </div> <!--/ .container -->
         </div><!--/ #headerwrap -->
+
+        <script>
+            function query() {
+                let postData = {
+                    type: $('#type').val(),
+                    county: $('#county').val(),
+                    daterange: $('#daterange').val(),
+                    price: $('#price').val(),
+                    room_type: $('#room_type').val()
+                };
+
+                $.ajax({
+                    method: "POST",
+                    url: "/data/search",
+                    data: postData
+                }).done(function (data) {
+                    let obj = JSON.parse(data);
+                    console.log(obj);
+                    let htmlStr = '';
+                    if (obj === null) {
+                        htmlStr = '<h1>無</h1>';    
+                    }
+                    else {
+                        htmlStr = `
+                            <h2>名稱: ${obj.name}</h2><br>
+                            <h2>地址: ${obj.address}</h2><br>
+                            <h2>價格: ${obj.min_price} - ${obj.max_price}</h2><br>
+                            <div class="row centered" style="padding-top: 100px;">
+                                <h4>附近旅遊景點</h4></div>
+                        `;
+
+                        obj.attraction.forEach(el => {
+                            htmlStr += `
+                            <div class="col-xs-4">
+                            <h4>標題: ${el.title}</h4>
+                            <h4>地址: ${el.address}</h4>
+                            </div>`;
+                        });
+
+                        htmlStr+=`
+                            <div class="row centered" style="padding-top: 100px;">
+                                <h4>周邊近期活動</h4>
+                            </div>`
+
+                        obj.activity.forEach(el => {
+                            htmlStr += `
+                            <div class="col-xs-4">
+                            <h4>標題: ${el.title}</h4>
+                            <h4>地址: ${el.address}</h4>
+                            <h4>日期: ${el.from_date} - ${el.to_date}</h4>
+                            </div>`;
+                        });
+                    }
+                    $('#result').html(htmlStr);
+
+                });
+            }
+        </script>
     </section>
 @endsection
