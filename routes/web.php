@@ -44,6 +44,8 @@ Route::group(['prefix' => 'data'], function () {
     Route::post('postEvaluation', 'ContentController@postEvaluation');
     Route::post('search', 'ContentController@search');
     Route::post('recommend', 'ContentController@recommend');
+    Route::post('log', 'ContentController@log');
+
 });
 
 Route::get('test', 'DisController@computeDis');

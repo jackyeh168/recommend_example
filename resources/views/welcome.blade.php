@@ -94,8 +94,13 @@
                     county: $('#county').val(),
                     daterange: $('#daterange').val(),
                     price: $('#price').val(),
-                    room_type: $('#room_type').val()
+                    room_type: $('#room_type').val(),
                 };
+                $.ajax({
+                    method: "POST",
+                    url: "/data/log",
+                    data: postData
+                });
 
                 $.ajax({
                     method: "POST",

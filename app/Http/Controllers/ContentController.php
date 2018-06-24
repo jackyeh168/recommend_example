@@ -7,6 +7,22 @@ use Illuminate\Support\Facades\Auth;
 
 class ContentController extends Controller
 {
+    public function log()
+    {
+        $user_id = (Auth::user() !== null) ?Auth::user()->id:null;
+        if ($user_id === null) {
+            return;
+        }
+        \DB::table('log')->insert([
+            'user_id' => $user_id,
+            'town' => request()->input('county'),
+            'type' => request()->input('type'),
+            'room_type' => request()->input('room_type'),
+            'price_interval' => floor(request()->input('price')/2000)
+        ]);
+        return;
+    }
+
     public function getAllHotels()
     {
         $query = \DB::table('hotel')
@@ -210,67 +226,87 @@ class ContentController extends Controller
             return $this->getDefaultRecommend('hotel');
         }
         else {
-            $condition = \DB::table('evaluation')
-                ->join('hotel', 'evaluation.hotel_id', '=', 'hotel.hotel_id')
-                ->where('hotel.name', 'not like', '%' . '民宿' . '%')
-                ->where('evaluation.user_id', $user_id)
-                ->select(\DB::raw('town, count(town) as tcount, price_interval, count(price_interval) as pcount'))
-                ->groupBy('town', 'price_interval')
-                ->orderByRaw('tcount desc, pcount DESC')
-                ->limit(1)
-                ->get()
-                ->toArray();
+            $townCond = \DB::table('log')
+                ->select(\DB::raw('town, count(town) as count'))
+                ->where('user_id', $user_id)
+                ->groupBy('town')
+                ->orderBy('count', 'desc')
+                ->first();
 
-            if (count($condition) === 0) {
-                return $this->getDefaultRecommend('hotel');
-            }
+            $priceCond = \DB::table('log')
+                ->select(\DB::raw('price_interval, count(price_interval) as count'))
+                ->where('user_id', $user_id)
+                ->groupBy('price_interval')
+                ->orderBy('count', 'desc')
+                ->first();
 
             $res = \DB::table('hotel')
                 ->where('name', 'not like', '%' . '民宿' . '%')
-                ->where('town', $condition[0]->town)
-                ->where('price_interval', $condition[0]->price_interval)
                 ->orderBy('topk', 'desc')
-                ->limit(5)
-                ->get()
-                ->toArray();
+                ->limit(5);
+
+            if ($townCond !== null) {
+                $res = $res->where('town', $townCond->town);
+            }
+
+            if ($townCond !== null) {
+                $res = $res->where('price_interval', $priceCond->price_interval);
+            }
+
+            $res = $res->get()->toArray();
 
             return $res;
         }
     }
-
-
 
     private function getRecommendHomestay($user_id){
         if($user_id === null){
             return $this->getDefaultRecommend('homestay');
         }
         else {
-            $condition = \DB::table('evaluation')
-                ->join('hotel', 'evaluation.hotel_id', '=', 'hotel.hotel_id')
-                ->where('hotel.name', 'like', '%' . '民宿' . '%')
-                ->where('evaluation.user_id', $user_id)
-                ->select(\DB::raw('town, count(town) as tcount, price_interval, count(price_interval) as pcount'))
-                ->groupBy('town', 'price_interval')
-                ->orderByRaw('tcount desc, pcount DESC')
-                ->limit(1)
-                ->get()
-                ->toArray();
+            $townCond = \DB::table('log')
+                ->select(\DB::raw('town, count(town) as count'))
+                ->where('user_id', $user_id)
+                ->groupBy('town')
+                ->orderBy('count', 'desc')
+                ->first();
 
-            if (count($condition) === 0) {
-                return $this->getDefaultRecommend('homestay');
-            }
+            $priceCond = \DB::table('log')
+                ->select(\DB::raw('price_interval, count(price_interval) as count'))
+                ->where('user_id', $user_id)
+                ->groupBy('price_interval')
+                ->orderBy('count', 'desc')
+                ->first();
 
             $res = \DB::table('hotel')
                 ->where('name', 'like', '%' . '民宿' . '%')
-                ->where('town', $condition[0]->town)
-                ->where('price_interval', $condition[0]->price_interval)
                 ->orderBy('topk', 'desc')
-                ->limit(5)
-                ->get()
-                ->toArray();
+                ->limit(5);
+
+            if ($townCond !== null) {
+                $res = $res->where('town', $townCond->town);
+            }
+
+            if ($townCond !== null) {
+                $res = $res->where('price_interval', $priceCond->price_interval);
+            }
+
+            $res = \DB::table('hotel')
+                ->where('name', 'not like', '%' . '民宿' . '%')
+                ->orderBy('topk', 'desc')
+                ->limit(5);
+
+            if ($townCond !== null) {
+                $res = $res->where('town', $townCond->town);
+            }
+
+            if ($townCond !== null) {
+                $res = $res->where('price_interval', $priceCond->price_interval);
+            }
+
+            $res = $res->get()->toArray();
 
             return $res;
-
         }
     }
 
