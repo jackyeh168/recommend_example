@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: mysql
--- 產生時間： 2018 年 06 月 24 日 03:47
+-- 產生時間： 2018 年 06 月 24 日 09:18
 -- 伺服器版本: 8.0.2-dmr
 -- PHP 版本： 7.0.21
 
@@ -2323,6 +2323,41 @@ INSERT INTO `hotel` (`hotel_id`, `name`, `county`, `town`, `phone`, `address`, `
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `log`
+--
+
+CREATE TABLE `log` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `town` varchar(4) DEFAULT NULL,
+  `type` varchar(4) DEFAULT NULL,
+  `room_type` varchar(16) DEFAULT NULL,
+  `price_interval` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 資料表的匯出資料 `log`
+--
+
+INSERT INTO `log` (`id`, `user_id`, `town`, `type`, `room_type`, `price_interval`) VALUES
+(1, 2, NULL, NULL, NULL, 0),
+(2, 2, '花蓮市', '民宿', '單人房', 0),
+(3, 2, '花蓮市', '民宿', '單人房', 1),
+(4, 2, '新城鄉', '民宿', '單人房', 1),
+(5, 2, '新城鄉', '民宿', '單人房', 0),
+(6, 2, '新城鄉', '民宿', '單人房', 0),
+(7, 2, '花蓮市', '民宿', NULL, 0),
+(8, 2, '花蓮市', '民宿', NULL, 0),
+(9, 2, '秀林鄉', '民宿', NULL, 0),
+(10, 2, '秀林鄉', '民宿', NULL, 0),
+(11, 2, '秀林鄉', '民宿', NULL, 0),
+(12, 2, '秀林鄉', '民宿', NULL, 0),
+(13, 2, '秀林鄉', '民宿', NULL, 0),
+(14, 2, '秀林鄉', '民宿', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `password_resets`
 --
 
@@ -2385,6 +2420,12 @@ ALTER TABLE `hotel`
   ADD PRIMARY KEY (`hotel_id`);
 
 --
+-- 資料表索引 `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -2424,6 +2465,12 @@ ALTER TABLE `evaluation`
 --
 ALTER TABLE `hotel`
   MODIFY `hotel_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1860;
+
+--
+-- 使用資料表 AUTO_INCREMENT `log`
+--
+ALTER TABLE `log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 使用資料表 AUTO_INCREMENT `users`
